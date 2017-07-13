@@ -109,17 +109,20 @@ namespace Dictionaries
             };
 
 
-            
+            foreach (KeyValuePair<string,int> animal in zooKeeper.Where(KeyValuePair => KeyValuePair.Value == zooKeeper.Values.Min()).ToList())
+            {
+                zooKeeper.Remove(animal.Key);
+            }
             var animalCountOrder = from pair in zooKeeper
                         orderby pair.Value descending
                         select pair;
-
+            
             foreach (KeyValuePair<string,int> pair in animalCountOrder)
             {
                 Console.WriteLine("{0} {1}", pair.Key, pair.Value);
             }
 
-
+            
 
 
 
